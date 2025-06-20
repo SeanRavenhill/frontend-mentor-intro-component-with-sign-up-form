@@ -1,7 +1,11 @@
+import Intro from './components/Intro';
+
 const App = () => {
     return (
         <>
-            <div>Hello World!</div>
+            <section className="intro-section">
+                <Intro />
+            </section>
         </>
     );
 };

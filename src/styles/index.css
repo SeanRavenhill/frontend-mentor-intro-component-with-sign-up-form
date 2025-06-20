@@ -8,15 +8,19 @@ body {
 
 @theme {
     --font-poppins: 'Poppins', 'sans-serif';
-    --color-primary-red: hsl(0, 100%, 74%);
-    --color-primary-green: hsl(154, 59%, 51%);
-    --color-accent-blue: hsl(248, 32%, 49%);
-    --color-accent-darkblue: hsl(249, 10%, 26%);
-    --color-accent-grayblue: hsl(246, 25%, 77%);
+    --color-red: hsla(0, 100%, 74%, 100%);
+    --color-green: hsl(154, 59%, 51%);
+    --color-bluee: hsl(248, 32%, 49%);
+    --color-darkblue: hsl(249, 10%, 26%);
+    --color-grayblue: hsl(246, 25%, 77%);
 }
 
 @layer utilities {
     .flex-center {
         @apply flex items-center justify-center;
+    }
+
+    .intro-section {
+        @apply bg-red relative h-svh min-h-svh w-full bg-[url(../public/images/bg-intro-mobile.png)] md:bg-[url(../public/images/bg-intro-desktop.png)];
     }
 }
