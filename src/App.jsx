@@ -1,11 +1,11 @@
-import Intro from './components/Intro';
+import IntroSection from './components/sections/IntroSection';
 
 const App = () => {
     return (
         <>
-            <section className="intro-section">
-                <Intro />
-            </section>
+            <main id="main" role="main">
+                <IntroSection />
+            </main>
         </>
     );
 };
