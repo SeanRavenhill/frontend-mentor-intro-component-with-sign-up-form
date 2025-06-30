@@ -6,18 +6,18 @@
     --max-padding: 10.3125rem;
     --min-screen: 390;
     --max-screen: 1440;
-    --fluid-24-165: clamp(1.5rem, -1.7732rem + 13.4286vw, 10.3125rem);
+    --fluid-24-165: clamp(1.5rem, -1.603rem + 13.2394vw, 10.3125rem);
+    --fluid-88-120: clamp(5.5rem, 4.7958rem + 3.0047vw, 7.5rem);
+    --fluid-68-120: clamp(4.25rem, 3.1056rem + 4.8826vw, 7.5rem);
+    --fluid-28-50: clamp(1.75rem, 1.2658rem + 2.0657vw, 3.125rem);
+    --fluid-24-40: clamp(1.5rem, 1.1479rem + 1.5023vw, 2.5rem);
+    --fluid-20-32: clamp(1.25rem, 0.9859rem + 1.1268vw, 2rem);
+    --fluid-24-28: clamp(1.5rem, 1.412rem + 0.3756vw, 1.75rem);
+    --fluid-16-20: clamp(1rem, 0.912rem + 0.3756vw, 1.25rem);
+
     --container-max-width: 69.375rem;
-}
-
-body {
-    font-family: var(--font-poppins);
-    font-size: 1rem;
-}
-
-h2 {
-    @apply text-center text-[1.75rem] leading-9 font-bold tracking-[-0.292px] text-white md:text-left md:text-[3.125rem] md:leading-14 md:tracking-[-0.292px];
-    font-size: clamp(1.75rem, 1.2393rem + 2.0952vw, 3.125rem);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 @theme {
@@ -27,6 +27,16 @@ h2 {
     --color-blue: hsla(248, 32%, 49%, 1);
     --color-darkblue: hsla(249, 10%, 26%, 1);
     --color-grayblue: hsla(246, 25%, 77%, 1);
+}
+
+body {
+    font-family: var(--font-poppins);
+    font-size: 1rem;
+}
+
+h2 {
+    @apply text-center text-[1.75rem] leading-9 font-bold tracking-[-0.292px] text-white xl:text-left xl:text-[3.125rem] xl:leading-14 xl:tracking-[-0.292px];
+    font-size: var(--fluid-28-50);
 }
 
 @layer utilities {

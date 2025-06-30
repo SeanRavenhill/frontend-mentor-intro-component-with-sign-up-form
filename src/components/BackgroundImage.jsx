@@ -1,6 +1,6 @@
 const BackgroundImage = ({ mobileSrc, desktopSrc, alt = '', className = '' }) => {
     return (
-        <div className={`absolute inset-0 -z-10 ${className}`}>
+        <div className={`absolute inset-0 z-0 ${className}`}>
             <img
                 className="inline-block h-full w-full object-cover md:hidden"
                 src={mobileSrc}
