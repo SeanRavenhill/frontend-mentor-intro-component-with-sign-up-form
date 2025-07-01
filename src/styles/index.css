@@ -24,6 +24,7 @@
     --font-poppins: 'Poppins', 'sans-serif';
     --color-red: hsla(0, 100%, 74%, 1);
     --color-green: hsla(154, 59%, 51%, 1);
+    --color-green-hover: hsla(154, 65%, 68%, 1);
     --color-blue: hsla(248, 32%, 49%, 1);
     --color-darkblue: hsla(249, 10%, 26%, 1);
     --color-grayblue: hsla(246, 25%, 77%, 1);

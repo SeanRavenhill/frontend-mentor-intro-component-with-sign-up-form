@@ -1,18 +1,13 @@
 import Container from '../Container';
 import ContainerContent from '../ContainerContent';
-import Form from '../form/Form';
+import Form from '../Form/Form';
 
 import { introComponent } from '../../constants';
 
 const { title, text, cta, form } = introComponent;
-const { inputFields, buttonText, legal } = form;
+const { fields, buttonText, legal } = form;
 
 const IntroSection = () => {
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        alert('clicked');
-    };
-
     return (
         <>
             <Container
@@ -23,7 +18,7 @@ const IntroSection = () => {
                     <div className="flex flex-auto flex-col gap-16 pt-[var(--fluid-88-120)] pb-[var(--fluid-68-120)] xl:flex-row xl:gap-11">
                         <div className="border-green flex flex-col justify-center gap-[var(--fluid-24-28)] border text-white xl:max-w-[32.8125rem]">
                             <h2>{title}</h2>
-                            <p className="text-center text-base leading-relaxed font-medium text-white">
+                            <p className="text-center text-base leading-relaxed font-medium text-white xl:text-left">
                                 {text}
                             </p>
                         </div>
@@ -33,12 +28,7 @@ const IntroSection = () => {
                                 <strong>{`${cta.bold} `}</strong>
                                 {cta.rest}
                             </div>
-                            <Form
-                                onSubmit={handleSubmit}
-                                inputFields={inputFields}
-                                buttonText={buttonText}
-                                legal={legal}
-                            />
+                            <Form fieldConfig={fields} buttonText={buttonText} legal={legal} />
                         </div>
                     </div>
                 </ContainerContent>

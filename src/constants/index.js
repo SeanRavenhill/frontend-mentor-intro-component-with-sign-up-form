@@ -8,26 +8,29 @@ export const introComponent = {
         rest: 'then $20/mo. thereafter',
     },
     form: {
-        inputFields: {
+        fields: {
             firstName: {
                 id: 'firstName',
-                placeholderValue: 'First Name',
+                placeholder: 'First Name',
             },
             lastName: {
                 id: 'lastName',
-                placeholderValue: 'Last Name',
+                placeholder: 'Last Name',
             },
-            email: {
+            userEmail: {
                 id: 'email',
-                placeholderValue: 'Email Address',
+                placeholder: 'Email Address',
             },
-            password: {
+            userPassword: {
                 id: 'password',
-                placeholderValue: 'Password',
+                placeholder: 'Password',
             },
         },
         buttonText: 'Claim your free trial',
-        legal: 'By clicking the button, you are agreeing to our Terms and Services',
+        legal: {
+            text: 'By clicking the button, you are agreeing to our',
+            termsAndConditions: 'Terms and Services',
+        },
     },
 };
 
