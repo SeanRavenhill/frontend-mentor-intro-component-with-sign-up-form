@@ -1,4 +1,4 @@
-import IntroSection from './components/sections/IntroSection';
+import IntroSection from './components/Sections/IntroSection/IntroSection';
 
 const App = () => {
     return (

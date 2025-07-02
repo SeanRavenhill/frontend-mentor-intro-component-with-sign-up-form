@@ -1,5 +1,6 @@
-const FormInputField = ({ fieldConfig, formData, setFormData, type = 'text' }) => {
-    const { placeholder, id } = fieldConfig;
+export default function FormInputField({ fieldConfig, formData, setFormData, formErrorMessages, formErrors }) {
+    const { placeholder, id, type } = fieldConfig;
+    const error = formErrors[id];
 
     return (
         <>
@@ -8,6 +9,7 @@ const FormInputField = ({ fieldConfig, formData, setFormData, type = 'text' }) =
             </label>
             <input
                 id={id}
+                name={id}
                 type={type}
                 onChange={(e) =>
                     setFormData({
@@ -20,8 +22,7 @@ const FormInputField = ({ fieldConfig, formData, setFormData, type = 'text' }) =
                 value={formData[id]}
                 autoComplete="on"
             />
+            {error && <p className="text-red">{formErrorMessages[id]}</p>}
         </>
     );
-};
-
-export default FormInputField;
+}

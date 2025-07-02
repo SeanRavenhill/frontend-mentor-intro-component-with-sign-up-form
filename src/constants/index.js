@@ -12,24 +12,29 @@ export const introComponent = {
             firstName: {
                 id: 'firstName',
                 placeholder: 'First Name',
+                type: 'text',
             },
             lastName: {
                 id: 'lastName',
                 placeholder: 'Last Name',
+                type: 'text',
             },
-            userEmail: {
+            email: {
                 id: 'email',
                 placeholder: 'Email Address',
+                type: 'email',
             },
-            userPassword: {
+            password: {
                 id: 'password',
                 placeholder: 'Password',
+                type: 'password',
             },
         },
         buttonText: 'Claim your free trial',
         legal: {
             text: 'By clicking the button, you are agreeing to our',
             termsAndConditions: 'Terms and Services',
+            url: '#',
         },
     },
 };

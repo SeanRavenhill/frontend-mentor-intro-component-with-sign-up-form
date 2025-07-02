@@ -14,6 +14,8 @@
     --fluid-20-32: clamp(1.25rem, 0.9859rem + 1.1268vw, 2rem);
     --fluid-24-28: clamp(1.5rem, 1.412rem + 0.3756vw, 1.75rem);
     --fluid-16-20: clamp(1rem, 0.912rem + 0.3756vw, 1.25rem);
+    --fluid-15-46: clamp(0.9375rem, 0.2553rem + 2.9108vw, 2.875rem);
+    --fluid-15-45: clamp(0.9375rem, 0.2663rem + 2.8638vw, 2.8438rem);
 
     --container-max-width: 69.375rem;
     -webkit-font-smoothing: antialiased;
