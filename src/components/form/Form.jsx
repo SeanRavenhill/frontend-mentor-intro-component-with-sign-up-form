@@ -21,10 +21,10 @@ const formErrorMessages = {
 };
 
 const initialformErrors = {
-    firstName: false,
+    firstName: true,
     lastName: false,
-    email: false,
-    password: false,
+    email: true,
+    password: true,
 };
 
 const isEmtpy = (str) => {
@@ -46,39 +46,27 @@ export default function Form({ fieldConfig, buttonText, legal }) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(formData);
+
+        const formErrorChecks = {};
 
         if (isEmtpy(formData.firstName)) {
-            setFormErrors({
-                ...formErrors,
-                firstName: true,
-            });
+            formErrorChecks.firstName = true;
         }
 
         if (isEmtpy(formData.lastName)) {
-            setFormErrors({
-                ...formErrors,
-                firstName: true,
-            });
+            formErrorChecks.lastName = true;
         }
 
         if (!validateEmail(formData.email) || isEmtpy(formData.email)) {
-            console.log('email: empty');
-            setFormErrors({
-                ...formErrors,
-                email: true,
-            });
+            formErrorChecks.email = true;
         }
 
         if (isEmtpy(formData.password)) {
-            setFormErrors({
-                ...formErrors,
-                firstName: true,
-            });
+            formErrorChecks.password = true;
         }
 
-        console.log(formErrors);
-        // setFormData(initialFormData);
+        setFormErrors(formErrorChecks);
+        setFormData(initialFormData);
     };
 
     return (
@@ -105,7 +93,7 @@ export default function Form({ fieldConfig, buttonText, legal }) {
                 fieldConfig={email}
                 formData={formData}
                 setFormData={setFormData}
-                formEformErrorMessagesrrors={formErrorMessages}
+                formErrorMessages={formErrorMessages}
                 formErrors={formErrors}
             />
             <FormPasswordInput
