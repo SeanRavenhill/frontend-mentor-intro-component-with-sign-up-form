@@ -47,3 +47,20 @@ h2 {
         @apply flex items-center justify-center;
     }
 }
+
+/* Change autocomplete styles in WebKit */
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+    border: 1px solid #dedede;
+    -webkit-text-fill-color: var(--color-darkblue);
+    -webkit-box-shadow: 0 0 0px 1000px white inset;
+}
+
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill:focus {
+    border: 1px solid var(--color-blue);
+    -webkit-text-fill-color: var(--color-darkblue);
+    -webkit-box-shadow: 0 0 0px 1000px white inset;
+}

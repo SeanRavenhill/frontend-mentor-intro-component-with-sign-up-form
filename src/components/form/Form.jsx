@@ -21,10 +21,10 @@ const formErrorMessages = {
 };
 
 const initialformErrors = {
-    firstName: true,
+    firstName: false,
     lastName: false,
-    email: true,
-    password: true,
+    email: false,
+    password: false,
 };
 
 const isEmtpy = (str) => {
@@ -66,7 +66,7 @@ export default function Form({ fieldConfig, buttonText, legal }) {
         }
 
         setFormErrors(formErrorChecks);
-        setFormData(initialFormData);
+        console.log(formErrorChecks);
     };
 
     return (
@@ -81,6 +81,7 @@ export default function Form({ fieldConfig, buttonText, legal }) {
                 setFormData={setFormData}
                 formErrorMessages={formErrorMessages}
                 formErrors={formErrors}
+                setFormErrors={setFormErrors}
             />
             <FormInputField
                 fieldConfig={lastName}
@@ -88,6 +89,7 @@ export default function Form({ fieldConfig, buttonText, legal }) {
                 setFormData={setFormData}
                 formErrorMessages={formErrorMessages}
                 formErrors={formErrors}
+                setFormErrors={setFormErrors}
             />
             <FormEmailInput
                 fieldConfig={email}
@@ -95,6 +97,7 @@ export default function Form({ fieldConfig, buttonText, legal }) {
                 setFormData={setFormData}
                 formErrorMessages={formErrorMessages}
                 formErrors={formErrors}
+                setFormErrors={setFormErrors}
             />
             <FormPasswordInput
                 fieldConfig={password}
@@ -102,6 +105,7 @@ export default function Form({ fieldConfig, buttonText, legal }) {
                 setFormData={setFormData}
                 formErrorMessages={formErrorMessages}
                 formErrors={formErrors}
+                setFormErrors={setFormErrors}
             />
             <FormButton>{buttonText}</FormButton>
             <FormLegal data={legal} />
