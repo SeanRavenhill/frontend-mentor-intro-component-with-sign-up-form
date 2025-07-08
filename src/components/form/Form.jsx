@@ -20,15 +20,15 @@ const formErrorMessages = {
     password: 'Password cannot be empty',
 };
 
-const initialformErrors = {
+const initialFormErrors = {
     firstName: false,
     lastName: false,
     email: false,
     password: false,
 };
 
-const isEmtpy = (str) => {
-    // Return true if input string empty, false otherwise
+const isEmpty = (str) => {
+    // Checks for empty
     return str.trim() === '';
 };
 
@@ -39,34 +39,39 @@ const validateEmail = (email) => {
     return regex.test(email);
 };
 
+const validators = {
+    firstName: (val) => !isEmpty(val),
+    lastName: (val) => !isEmpty(val),
+    email: (val) => validateEmail(val),
+    password: (val) => !isEmpty(val),
+};
+
 export default function Form({ fieldConfig, buttonText, legal }) {
     const { firstName, lastName, email, password } = fieldConfig;
     const [formData, setFormData] = useState(initialFormData);
-    const [formErrors, setFormErrors] = useState(initialformErrors);
+    const [formErrors, setFormErrors] = useState(initialFormErrors);
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        const formErrorChecks = {};
+        const newFormErrors = {};
 
-        if (isEmtpy(formData.firstName)) {
-            formErrorChecks.firstName = true;
+        Object.entries(validators).forEach(([key, validate]) => {
+            if (!validate(formData[key])) {
+                newFormErrors[key] = true;
+            }
+        });
+
+        if (Object.keys(newFormErrors).length > 0) {
+            setFormErrors({ ...initialFormErrors, ...newFormErrors });
+        } else {
+            setTimeout(() => {
+                console.log('Submitting to server...', formData);
+                alert('Form Valid!');
+            }, 300);
+            setFormData(initialFormData);
+            setFormErrors(initialFormErrors);
         }
-
-        if (isEmtpy(formData.lastName)) {
-            formErrorChecks.lastName = true;
-        }
-
-        if (!validateEmail(formData.email) || isEmtpy(formData.email)) {
-            formErrorChecks.email = true;
-        }
-
-        if (isEmtpy(formData.password)) {
-            formErrorChecks.password = true;
-        }
-
-        setFormErrors(formErrorChecks);
-        console.log(formErrorChecks);
     };
 
     return (

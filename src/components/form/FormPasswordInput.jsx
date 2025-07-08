@@ -44,6 +44,12 @@ export default function FormPasswordInput({
                             [id]: false,
                         });
                     }}
+                    onInput={() => {
+                        setFormErrors({
+                            ...formErrors,
+                            [id]: false,
+                        });
+                    }}
                     className={`${errorMessage ? `border-red border-2` : `border border-[#dedede]`} placeholder:text-darkblue/75 text-darkblue active:border-blue focus-visible:border-blue relative w-full rounded-[5px] bg-white px-[var(--fluid-20-32)] py-4 text-sm leading-relaxed font-semibold tracking-tight focus:outline-0`}
                     placeholder={errorMessage ? '' : placeholder}
                     value={formData[id]}
