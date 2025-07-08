@@ -34,7 +34,7 @@ const isEmpty = (str) => {
 
 const validateEmail = (email) => {
     // Regular expression for email validation
-    var regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     // Return true if email matches regex, false otherwise
     return regex.test(email);
 };
@@ -47,9 +47,15 @@ const validators = {
 };
 
 export default function Form({ fieldConfig, buttonText, legal }) {
-    const { firstName, lastName, email, password } = fieldConfig;
     const [formData, setFormData] = useState(initialFormData);
     const [formErrors, setFormErrors] = useState(initialFormErrors);
+
+    const fields = [
+        { key: 'firstName', Component: FormInputField },
+        { key: 'lastName', Component: FormInputField },
+        { key: 'email', Component: FormEmailInput },
+        { key: 'password', Component: FormPasswordInput },
+    ];
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -80,38 +86,17 @@ export default function Form({ fieldConfig, buttonText, legal }) {
             onSubmit={handleSubmit}
             noValidate
         >
-            <FormInputField
-                fieldConfig={firstName}
-                formData={formData}
-                setFormData={setFormData}
-                formErrorMessages={formErrorMessages}
-                formErrors={formErrors}
-                setFormErrors={setFormErrors}
-            />
-            <FormInputField
-                fieldConfig={lastName}
-                formData={formData}
-                setFormData={setFormData}
-                formErrorMessages={formErrorMessages}
-                formErrors={formErrors}
-                setFormErrors={setFormErrors}
-            />
-            <FormEmailInput
-                fieldConfig={email}
-                formData={formData}
-                setFormData={setFormData}
-                formErrorMessages={formErrorMessages}
-                formErrors={formErrors}
-                setFormErrors={setFormErrors}
-            />
-            <FormPasswordInput
-                fieldConfig={password}
-                formData={formData}
-                setFormData={setFormData}
-                formErrorMessages={formErrorMessages}
-                formErrors={formErrors}
-                setFormErrors={setFormErrors}
-            />
+            {fields.map(({ key, Component }) => (
+                <Component
+                    key={key}
+                    fieldConfig={fieldConfig[key]}
+                    formData={formData}
+                    setFormData={setFormData}
+                    formErrorMessages={formErrorMessages}
+                    formErrors={formErrors}
+                    setFormErrors={setFormErrors}
+                />
+            ))}
             <FormButton>{buttonText}</FormButton>
             <FormLegal data={legal} />
         </form>
