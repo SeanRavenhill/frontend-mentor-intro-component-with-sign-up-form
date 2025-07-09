@@ -13,18 +13,11 @@ const initialFormData = {
     password: '',
 };
 
-const formErrorMessages = {
-    firstName: 'First Name cannot be empty',
-    lastName: 'Last Name cannot be empty',
-    email: 'Looks like this is not an email',
-    password: 'Password cannot be empty',
-};
-
 const initialFormErrors = {
-    firstName: false,
-    lastName: false,
-    email: false,
-    password: false,
+    firstName: { valid: true, message: '' },
+    lastName: { valid: true, message: '' },
+    email: { valid: true, message: '' },
+    password: { valid: true, message: '' },
 };
 
 const isEmpty = (str) => {
@@ -40,31 +33,44 @@ const validateEmail = (email) => {
 };
 
 const validators = {
-    firstName: (val) => !isEmpty(val),
-    lastName: (val) => !isEmpty(val),
-    email: (val) => validateEmail(val),
-    password: (val) => !isEmpty(val),
+    firstName: {
+        validate: (val) => !isEmpty(val),
+        message: 'First Name cannot be empty',
+    },
+    lastName: {
+        validate: (val) => !isEmpty(val),
+        message: 'Last Name cannot be empty',
+    },
+    email: {
+        validate: (val) => validateEmail(val),
+        message: 'Looks like this is not an email',
+    },
+    password: {
+        validate: (val) => !isEmpty(val),
+        message: 'Password cannot be empty',
+    },
 };
+
+const fields = [
+    { key: 'firstName', Component: FormInputField },
+    { key: 'lastName', Component: FormInputField },
+    { key: 'email', Component: FormEmailInput },
+    { key: 'password', Component: FormPasswordInput },
+];
 
 export default function Form({ fieldConfig, buttonText, legal }) {
     const [formData, setFormData] = useState(initialFormData);
     const [formErrors, setFormErrors] = useState(initialFormErrors);
-
-    const fields = [
-        { key: 'firstName', Component: FormInputField },
-        { key: 'lastName', Component: FormInputField },
-        { key: 'email', Component: FormEmailInput },
-        { key: 'password', Component: FormPasswordInput },
-    ];
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
         const newFormErrors = {};
 
-        Object.entries(validators).forEach(([key, validate]) => {
-            if (!validate(formData[key])) {
-                newFormErrors[key] = true;
+        Object.entries(validators).forEach(([key, validator]) => {
+            const isValid = validator.validate(formData[key]);
+            if (!isValid) {
+                newFormErrors[key] = { valid: isValid, message: validator.message };
             }
         });
 
@@ -74,9 +80,9 @@ export default function Form({ fieldConfig, buttonText, legal }) {
             setTimeout(() => {
                 console.log('Submitting to server...', formData);
                 alert('Form Valid!');
+                setFormData(initialFormData);
+                setFormErrors(initialFormErrors);
             }, 300);
-            setFormData(initialFormData);
-            setFormErrors(initialFormErrors);
         }
     };
 
@@ -92,7 +98,6 @@ export default function Form({ fieldConfig, buttonText, legal }) {
                     fieldConfig={fieldConfig[key]}
                     formData={formData}
                     setFormData={setFormData}
-                    formErrorMessages={formErrorMessages}
                     formErrors={formErrors}
                     setFormErrors={setFormErrors}
                 />
